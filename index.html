@@ -78,20 +78,29 @@
             "Pigs dream, much like humans do.",
             "Pigs are omnivores, meaning they eat both plants and animals."
         ];
-
+    
         document.getElementById('fact-button').addEventListener('click', () => {
             const randomIndex = Math.floor(Math.random() * facts.length);
             const factDisplay = document.getElementById('fact-display');
+    
+            // Fade out effect
             factDisplay.style.opacity = 0;
+    
             setTimeout(() => {
                 factDisplay.textContent = facts[randomIndex];
-                factDisplay.style.opacity = 1;
+                factDisplay.style.opacity = 1; // Fade in effect
             }, 500);
         });
-
+    
         document.getElementById('share-button').addEventListener('click', () => {
             const fact = document.getElementById('fact-display').textContent;
-            const twitterUrl = https://twitter.com/intent/tweet?text=${encodeURIComponent(fact)};
+    
+            if (fact === "Click the button to see a fun fact!") {
+                alert("Please generate a fact before sharing!");
+                return;
+            }
+    
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fact)}`;
             window.open(twitterUrl, '_blank');
         });
     </script>
